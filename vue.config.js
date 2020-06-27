@@ -33,16 +33,18 @@ const vueConfig = {
     // webpack plugins
     plugins: [
       // Ignore all locale files of moment.js
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new BundleAnalyzerPlugin()
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
     // if prod, add externals
     externals: isProd ? assetsCDN.externals : {}
   },
-
   chainWebpack: (config) => {
     config.resolve.alias
       .set('@$', resolve('src'))
+    if (process.env.NODE_ENV === 'production') {
+      config.plugin('BundleAnalyzerPlugin')
+        .use(BundleAnalyzerPlugin)
+    }
 
     const svgRule = config.module.rule('svg')
     svgRule.uses.clear()
