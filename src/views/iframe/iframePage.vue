@@ -52,6 +52,7 @@
 <style lang="less" scoped>
   .bgw{
     background-color: white;
+    padding: 20px;
   }
   .iframe-container-full {
     position: fixed;

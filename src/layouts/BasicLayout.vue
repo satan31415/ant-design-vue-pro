@@ -159,6 +159,9 @@ export default {
  * You can easily play with the page transition by editing
  * these styles.
  */
+body{
+  overflow-x: hidden;
+}
 
 .page-transition-enter {
   opacity: 0;
