@@ -1,3 +1,5 @@
+import { parse } from 'qs'
+
 export function timeFix () {
   const time = new Date()
   const hour = time.getHours()
@@ -24,7 +26,8 @@ export function handleScrollHeader (callback) {
   let timer = 0
 
   let beforeScrollTop = window.pageYOffset
-  callback = callback || function () {}
+  callback = callback || function () {
+  }
   window.addEventListener(
     'scroll',
     event => {
@@ -64,4 +67,26 @@ export function removeLoadingAnimate (id = '', timeout = 1500) {
   setTimeout(() => {
     document.body.removeChild(document.getElementById(id))
   }, timeout)
+}
+
+/*
+ * 获取路由参数
+ * */
+export function getQueryVariable (name, url) {
+  const href = decodeURIComponent(url || window.location.href)
+  const query = href.substring(href.indexOf('?') + 1)
+  const vars = query.split('&')
+  const obj = {}
+  if (query.indexOf('=') > -1) {
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=')
+      obj[pair[0]] = pair[1]
+    }
+  }
+  if (name) return obj[name] || undefined
+  return obj
+}
+
+export function getPageQuery () {
+  return parse(window.location.href.split('?')[1])
 }

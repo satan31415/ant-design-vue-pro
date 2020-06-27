@@ -42,6 +42,12 @@ export const asyncRouterMap = [
             name: 'TestWork',
             component: () => import('@/views/dashboard/TestWork'),
             meta: { title: '测试功能', keepAlive: true, permission: [ 'dashboard' ] }
+          },
+          {
+            path: 'iframe',
+            name: 'Iframe',
+            component: () => import('@/views/iframe/iframePage'),
+            meta: { title: '测试 Iframe', keepAlive: true, permission: [ 'dashboard' ] }
           }
         ]
       },
