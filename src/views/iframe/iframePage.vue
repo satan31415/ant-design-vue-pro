@@ -23,27 +23,34 @@
     <div v-else class="bgw">
       <a-empty/>
     </div>
+    <Child :myname="name" @changeName="changeName"></Child>
   </div>
 </template>
 
 <script>
   import { getQueryVariable } from '@/utils/util'
   import Empty from 'ant-design-vue/es/empty'
+  import Child from './child'
 
   export default {
     name: 'IframeLayout',
-    components: { 'a-empty': Empty },
+    components: { 'a-empty': Empty, Child },
     data: () => {
       return {
         url: getQueryVariable('url'),
         title: getQueryVariable('title'),
-        fullScreen: false
+        fullScreen: false,
+        name: 'hhh'
       }
     },
     methods: {
       toggleFull (e) {
         e.preventDefault()
         this.fullScreen = !this.fullScreen
+      },
+      changeName (value) {
+        console.log(value)
+        this.name = value
       }
     }
   }
