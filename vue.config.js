@@ -108,7 +108,7 @@ const vueConfig = {
 }
 
 // preview.pro.loacg.com only do not use in your production;
-if (process.env.VUE_APP_PREVIEW === 'true') {
+if (process.env.VUE_APP_PREVIEW === 'true' || process.env.NODE_ENV === 'development') {
   console.log('VUE_APP_PREVIEW', true)
   // add `ThemeColorReplacer` plugin to webpack plugins
   vueConfig.configureWebpack.plugins.push(createThemeColorReplacerPlugin())
